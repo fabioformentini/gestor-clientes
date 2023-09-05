@@ -9,7 +9,7 @@ export class MaskTelefonePipe implements PipeTransform {
         if (!value) {
             return '';
         }
-        const formattedPhoneNumber = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
+        const formattedPhoneNumber = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
         return formattedPhoneNumber;
     }
 

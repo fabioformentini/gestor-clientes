@@ -6,13 +6,13 @@
         </div>
         <div class="field col-12">
             <label for="tipo" class="block">Tipo</label>
-            <p-dropdown id="tipo" optionLabel="name" class="" styleClass="w-full" formControlName="tipo"></p-dropdown>
+            <p-dropdown id="tipo" (onChange)="handleTipoPessoa()" [options]="tiposPessoaOptions" placeholder="Selecione" optionValue="value" optionLabel="label" class="" styleClass="w-full" formControlName="tipo"></p-dropdown>
         </div>
         <div class="field col-12">
             <label for="cpfcnpj" class="block">CPF/CNPJ</label>
             <p-inputMask
                 id="cpfcnpj"
-                [mask]="tipoDocumento === 'CPF' ? '999.999.999-99' : '99.999.999/9999-99'"
+                [mask]="form.get('tipo').value === tipoPessoa.PESSOA_FISICA ? '999.999.999-99' : '99.999.999/9999-99'"
                 styleClass="w-full"
                 formControlName="cpfOrCnpj"
                 unmask="true">
@@ -22,9 +22,10 @@
             <label for="rgie" class="block">RG/IE</label>
             <p-inputMask
                 id="rgie"
-                [mask]="tipoDocumento === 'RG' ? '99.999.999-9' : '99.999.999/999-9'"
+                [mask]="form.get('tipo').value === tipoPessoa.PESSOA_FISICA ? '9.999.999' : '999999999999'"
                 styleClass="w-full"
-                formControlName="rgOrIe">
+                formControlName="rgOrIe"
+                unmask="true">
             </p-inputMask>
         </div>
         <div class="field col-12">
@@ -33,7 +34,7 @@
         </div>
         <div class="field col-12">
             <label for="status" class="block">Status</label>
-            <p-dropdown id="status" optionLabel="name" class="" styleClass="w-full" formControlName="status"></p-dropdown>
+            <p-dropdown id="status" [options]="status" optionValue="value" placeholder="Selecione" optionLabel="label" class="" styleClass="w-full" formControlName="status"></p-dropdown>
         </div>
         <div class="field col-12">
             <label for="status" class="block">Telefone</label>
@@ -58,7 +59,6 @@
                             <ng-template [ngIf]="col.field == 'numero'">
                                 {{rowData['numero'] | maskTelefone}}
                             </ng-template>
-                            {{ rowData[col.field] }}
                             <ng-template [ngIf]="!col.text">
                                 <p-button label="Excluir" styleClass="p-button-raised p-button-text p-button-danger flex" class="flex justify-content-center"></p-button>
                             </ng-template>
