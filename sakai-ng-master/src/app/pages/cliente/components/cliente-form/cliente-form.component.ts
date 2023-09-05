@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ClienteModel} from "../../../../model/cliente.model";
-import {TelefoneModel} from "../../../../model/telefone.model";
+import {ClienteModel} from "../../../../shared/models/cliente.model";
+import {TelefoneModel} from "../../../../shared/models/telefone.model";
 import {TipoPessoaEnum} from "../../../../shared/enums/tipo-pessoa.enum";
 import {StatusEnum} from "../../../../shared/enums/status.enum";
 
