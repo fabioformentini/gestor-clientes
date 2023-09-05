@@ -1,0 +1,75 @@
+<div class="card" [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12">
+            <label for="nome" class="block">Nome Completo</label>
+            <input id="nome" type="text" pInputText class= "w-full" formControlName="nome"/>
+        </div>
+        <div class="field col-12">
+            <label for="tipo" class="block">Tipo</label>
+            <p-dropdown id="tipo" optionLabel="name" class="" styleClass="w-full" formControlName="tipo"></p-dropdown>
+        </div>
+        <div class="field col-12">
+            <label for="cpfcnpj" class="block">CPF/CNPJ</label>
+            <p-inputMask
+                id="cpfcnpj"
+                [mask]="tipoDocumento === 'CPF' ? '999.999.999-99' : '99.999.999/9999-99'"
+                styleClass="w-full"
+                formControlName="cpfOrCnpj"
+                unmask="true">
+            </p-inputMask>
+        </div>
+        <div class="field col-12">
+            <label for="rgie" class="block">RG/IE</label>
+            <p-inputMask
+                id="rgie"
+                [mask]="tipoDocumento === 'RG' ? '99.999.999-9' : '99.999.999/999-9'"
+                styleClass="w-full"
+                formControlName="rgOrIe">
+            </p-inputMask>
+        </div>
+        <div class="field col-12">
+            <label for="dataCadastro" class="block">Data de Cadastro</label>
+            <p-calendar id="dataCadastro" styleClass="w-full" formControlName="dataCadastro"></p-calendar>
+        </div>
+        <div class="field col-12">
+            <label for="status" class="block">Status</label>
+            <p-dropdown id="status" optionLabel="name" class="" styleClass="w-full" formControlName="status"></p-dropdown>
+        </div>
+        <div class="field col-12">
+            <label for="status" class="block">Telefone</label>
+            <div class="">
+                <p-inputMask unmask="true" mask="(99) 99999-9999" placeholder="(99) 9999-9999" styleClass="w-11" formControlName="telefone"></p-inputMask>
+                <p-button icon="pi pi pi-plus" styleClass="p-button-rounded p-button-success p-button-text p-button-raised" (onClick)="addTelefone()"></p-button>
+            </div>
+        </div>
+        <div class="field col-12">
+            <label class="block">Lista de Telefones</label>
+            <p-table [columns]="cols" [value]="listaTelefones">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{ col.header }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            <ng-template [ngIf]="col.field == 'numero'">
+                                {{rowData['numero'] | maskTelefone}}
+                            </ng-template>
+                            {{ rowData[col.field] }}
+                            <ng-template [ngIf]="!col.text">
+                                <p-button label="Excluir" styleClass="p-button-raised p-button-text p-button-danger flex" class="flex justify-content-center"></p-button>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div class="col-12 flex justify-content-end">
+        <p-button label="Cancelar" styleClass="p-button-secondary mr-3"></p-button>
+        <p-button label="Salvar" styleClass="button-save-new" (onClick)="salvarCliente()"></p-button>
+    </div>
+</div>
