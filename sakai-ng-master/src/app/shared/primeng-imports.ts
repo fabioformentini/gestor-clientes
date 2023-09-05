@@ -8,6 +8,7 @@ import {CalendarModule} from "primeng/calendar";
 import {StyleClassModule} from "primeng/styleclass";
 import {InputMaskModule} from "primeng/inputmask";
 import {ListboxModule} from "primeng/listbox";
+import { ToastModule } from 'primeng/toast';
 
 export const PRIMENG_IMPORTS = [
     InputTextModule,
@@ -20,4 +21,5 @@ export const PRIMENG_IMPORTS = [
     StyleClassModule,
     InputMaskModule,
     ListboxModule,
+    ToastModule
 ];

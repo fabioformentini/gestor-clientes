@@ -4,14 +4,15 @@ import {ClienteModel} from "../../../../shared/models/cliente.model";
 import {TelefoneModel} from "../../../../shared/models/telefone.model";
 import {TipoPessoaEnum} from "../../../../shared/enums/tipo-pessoa.enum";
 import {StatusEnum} from "../../../../shared/enums/status.enum";
-
-class Column {
-}
+import {ClienteService} from "../../../../shared/services/cliente.service";
+import { MessageService } from 'primeng/api';
+import {Column} from "../../../../shared/models/colum.model";
 
 @Component({
     selector: 'app-cliente-form',
     templateUrl: './cliente-form.component.html',
-    styleUrls: ['./cliente-form.component.scss']
+    styleUrls: ['./cliente-form.component.scss'],
+    providers: [MessageService]
 })
 export class ClienteFormComponent implements OnInit {
     listaTelefones: TelefoneModel[] = [];
@@ -23,7 +24,7 @@ export class ClienteFormComponent implements OnInit {
     tiposPessoaOptions = TipoPessoaEnum.selectItem;
     status = StatusEnum.selectItem;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private service: ClienteService, private messageService: MessageService) {
         this.definirFormulario();
     }
 
@@ -51,6 +52,9 @@ export class ClienteFormComponent implements OnInit {
     salvarCliente() {
         this.cliente = this.form.getRawValue();
         this.cliente.listaTelefones = this.listaTelefones;
+        this.service.insert(this.cliente).subscribe(value => {
+            this.messageService.add({key: 'tr', severity: 'success', summary: 'Success', detail: 'O cliente ' + value.nome + ' foi cadastrado com sucesso!'})
+        })
     }
 
     addTelefone() {

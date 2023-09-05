@@ -2,9 +2,6 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-class HttpClient {
-}
-
 export abstract class AbstractService<T, Y> {
     protected constructor(protected http: HttpClient) { }
 

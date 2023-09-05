@@ -7,7 +7,7 @@
 </div>
 
 <div class="card">
-    <p-table [columns]="cols" [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [columns]="cols" [value]="clientes" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
@@ -19,6 +19,12 @@
             <tr>
                 <td *ngFor="let col of columns">
                     {{ rowData[col.field] }}
+
+                    <ng-template [ngIf]="!col.text">
+                        <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-secondary p-button-outlined"></p-button>
+                        <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-info p-button-outlined"></p-button>
+                        <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-outlined"></p-button>
+                    </ng-template>
                 </td>
             </tr>
         </ng-template>
