@@ -36,6 +36,11 @@ export class ClienteListComponent {
     }
 
     ngOnInit() {
+        this.construirColunasListagem();
+        this.buscarClientes(this.filtro);
+    }
+
+    private construirColunasListagem() {
         this.cols = [
             {field: 'nome', header: 'Nome', text: true},
             {field: 'tipo', header: 'Tipo Pessoa'},
@@ -44,7 +49,6 @@ export class ClienteListComponent {
             {field: 'status', header: 'Status'},
             {field: 'acoes', header: 'Ações'}
         ];
-        this.buscarClientes(this.filtro);
     }
 
     novoCliente() {
@@ -56,7 +60,7 @@ export class ClienteListComponent {
             });
         this.ref.onClose.subscribe((cliente) => {
             if (cliente) {
-                this.messageService.add({severity: 'success', summary: 'Success', detail: 'O cliente ' + cliente.nome + 'foi cadastrado com sucesso!'})
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'O cliente ' + cliente.nome + ' foi cadastrado com sucesso!'})
                 this.buscarClientes(this.filtro)
             }
         });
@@ -86,6 +90,12 @@ export class ClienteListComponent {
                     width: '35%',
                     data: {cliente: value, acao: acao}
                 });
+            this.ref.onClose.subscribe((cliente) => {
+                if (cliente) {
+                    this.messageService.add({severity: 'success', summary: 'Success', detail: 'O cliente ' + cliente.nome + ' foi editado com sucesso!'})
+                    this.buscarClientes(this.filtro)
+                }
+            });
         })
 
     }

@@ -20,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
+
 @Transactional
 @RequiredArgsConstructor
 @Service
@@ -57,7 +59,9 @@ public class ClienteService {
     }
 
     public PessoaFisicaDTO salvarPF(PessoaFisicaDTO pessoaFisicaDTO) {
-        validarCpf(pessoaFisicaDTO.getCpf());
+        if (Objects.isNull(pessoaFisicaDTO.getId())) {
+            validarCpf(pessoaFisicaDTO.getCpf());
+        }
         return pessoaFisicaMapper.toDto(pessoaFisicaRepository.save(pessoaFisicaMapper.toEntity(pessoaFisicaDTO)));
     }
 
@@ -69,6 +73,9 @@ public class ClienteService {
     }
 
     public PessoaJuridicaDTO salvarPJ(PessoaJuridicaDTO pessoaJuridicaDTO) {
+        if (Objects.isNull(pessoaJuridicaDTO.getId())) {
+            validarCnpj(pessoaJuridicaDTO.getCnpj());
+        }
         return pessoaJuridicaMapper.toDto(pessoaJuridicaRepository.save(pessoaJuridicaMapper.toEntity(pessoaJuridicaDTO)));
     }
 

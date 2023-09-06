@@ -40,11 +40,15 @@ export class ClienteFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.construirColunasListagem();
+        this.verificarAcao()
+    }
+
+    private construirColunasListagem() {
         this.cols = [
             {field: 'numero', header: 'Número', text: true},
             {field: 'acoes', header: 'Ações'},
         ];
-        this.verificarAcao()
     }
 
     private verificarAcao(){
