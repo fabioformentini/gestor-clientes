@@ -1,11 +1,11 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ClienteListComponent} from './components/cliente-list/cliente-list.component';
 import {ClienteFormComponent} from './components/cliente-form/cliente-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ClienteRoutingModule} from "./cliente-routing.module";
-import {MaskTelefonePipe} from "../../pipes/mask-telefone.pipe";
 import {PRIMENG_IMPORTS} from "../../shared/primeng-imports";
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import {PRIMENG_IMPORTS} from "../../shared/primeng-imports";
         ClienteRoutingModule,
         ReactiveFormsModule,
         PRIMENG_IMPORTS,
+        SharedModule,
 
     ],
     exports: [

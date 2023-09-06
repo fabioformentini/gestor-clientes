@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb4c60a9-e59c-49d1-84f5-7eeb7893d965" name="Changes" comment="Feat: implementado modelo de listagem">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proxy.config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/shared/util/page.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/controller/ClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/domain/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/domain/PessoaFisica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/domain/PessoaJuridica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/domain/Telefone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/repository/ClienteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/repository/PessoaFisicaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/repository/PessoaJuridicaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/dto/ClienteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/dto/ClienteListDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/dto/PessoaFisicaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/dto/PessoaJuridicaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/mapper/ClienteMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/mapper/EntityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/mapper/PessoaFisicaMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sgc-service/sgc/src/main/java/com/br/sgc/service/mapper/PessoaJuridicaMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/cliente/components/cliente-list/cliente-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/cliente/components/cliente-list/cliente-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/services/abstract.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/services/abstract.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/services/cliente.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/services/cliente.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1693921877" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1693921876" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2UwCAZPzmgMVSp4FiOHAPRcb7xq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/fabioformentini/Documentos/PS2023/sakai-ng-master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "/home/fabioformentini/Documentos/PS2023/sakai-ng-master/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/shared" />
+      <recent name="$PROJECT_DIR$/src/app/shared/models" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb4c60a9-e59c-49d1-84f5-7eeb7893d965" name="Changes" comment="" />
+      <created>1693841112983</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693841112983</updated>
+      <workItem from="1693841114260" duration="4853000" />
+      <workItem from="1693860111394" duration="11276000" />
+      <workItem from="1693913987394" duration="18629000" />
+      <workItem from="1693944214795" duration="780000" />
+      <workItem from="1693946493430" duration="441000" />
+      <workItem from="1693949603796" duration="5666000" />
+    </task>
+    <task id="LOCAL-00001" summary="Feat: implementado máscara dinâmica e enums de status e tipo pessoa">
+      <created>1693928828274</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693928828274</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Feat: implementado service abstrato">
+      <created>1693930446128</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693930446128</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Feat: implementado modelo de listagem">
+      <created>1693934469558</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693934469558</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="angular.json" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../.." />
+    </ignored-roots>
+    <MESSAGE value="Feat: implementado máscara dinâmica e enums de status e tipo pessoa" />
+    <MESSAGE value="Feat: implementado service abstrato" />
+    <MESSAGE value="Feat: implementado modelo de listagem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: implementado modelo de listagem" />
+  </component>
+</project>

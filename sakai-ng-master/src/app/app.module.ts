@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AppLayoutModule } from './layout/app.layout.module';
+import {NgModule} from '@angular/core';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppLayoutModule} from './layout/app.layout.module';
 import {TableModule} from "primeng/table";
+import {SharedModule} from "./shared/shared.module";
+import {MessageService} from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -12,12 +14,14 @@ import {TableModule} from "primeng/table";
     imports: [
         AppRoutingModule,
         AppLayoutModule,
-        TableModule],
+        TableModule,
+        SharedModule],
     providers: [
-        {provide: LocationStrategy, useClass: HashLocationStrategy}
+        MessageService,
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
     ],
-    exports: [
-    ],
+    exports: [],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
