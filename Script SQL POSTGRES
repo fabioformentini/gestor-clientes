@@ -1,0 +1,27 @@
+script sql
+create table cliente (
+	id serial primary key,
+	nome varchar(255) not null,
+	tipo_pessoa boolean not null,
+	data_cadastro date default current_date,
+	ativo boolean 
+);
+
+create table telefone (
+	id serial primary key,
+	telefone varchar(11) not null,
+	id_cliente int references cliente(id)
+);
+
+
+create table pessoa_fisica(
+	id int primary key references cliente(id),
+	cpf varchar(11) not null unique,
+	rg varchar(255) not null unique
+);
+
+create table pessoa_juridica (
+	id int primary key references cliente(id),
+	cnpj varchar(14) not null unique,
+	ie varchar(255) not null unique
+);
