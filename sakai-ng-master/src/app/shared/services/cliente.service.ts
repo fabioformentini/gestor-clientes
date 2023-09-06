@@ -4,9 +4,7 @@ import {ClienteListModel} from "../models/cliente-list.model";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-
-class Page<T> {
-}
+import {Page} from "../util/page";
 
 @Injectable({
     providedIn: 'root'
@@ -17,11 +15,11 @@ export class ClienteService extends AbstractService<ClienteModel, ClienteListMod
     }
 
     override getEntity(): string {
-        return "clientes";
+        return "cliente";
     }
 
-    search(): Observable<Page<ClienteListModel>>{
-        return this.http.post<Page<ClienteListModel>>(this.resourceUrl + '/search',
+    search(): Observable<Page<ClienteListModel[]>>{
+        return this.http.post<Page<ClienteListModel[]>>(this.resourceUrl,
             {params: 'page', 'size': 10})
     }
 

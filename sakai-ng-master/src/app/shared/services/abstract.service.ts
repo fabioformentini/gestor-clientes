@@ -17,8 +17,8 @@ export abstract class AbstractService<T, Y> {
         return this.http.get<T>(this.resourceUrl + '/' + id);
     }
 
-    findAll(): Observable<T[]> {
-        return this.http.get<T[]>(this.resourceUrl);
+    findAll(): Observable<Y[]> {
+        return this.http.get<Y[]>(this.resourceUrl);
     }
 
     update(entity: T): Observable<T> {
