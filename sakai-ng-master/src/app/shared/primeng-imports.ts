@@ -9,6 +9,8 @@ import {StyleClassModule} from "primeng/styleclass";
 import {InputMaskModule} from "primeng/inputmask";
 import {ListboxModule} from "primeng/listbox";
 import { ToastModule } from 'primeng/toast';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {MessageModule} from "primeng/message";
 
 export const PRIMENG_IMPORTS = [
     InputTextModule,
@@ -21,5 +23,7 @@ export const PRIMENG_IMPORTS = [
     StyleClassModule,
     InputMaskModule,
     ListboxModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule,
+    MessageModule
 ];

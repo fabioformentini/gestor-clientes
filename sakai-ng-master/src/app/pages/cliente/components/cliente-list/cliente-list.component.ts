@@ -7,12 +7,13 @@ import {ClienteService} from "../../../../shared/services/cliente.service";
 import {ClienteModel} from "../../../../shared/models/cliente.model";
 import {StatusEnum} from "../../../../shared/enums/status.enum";
 import {FiltroModel} from "../../../../shared/models/filtro.model";
+import {ConfirmationService, ConfirmEventType, MessageService} from "primeng/api";
 
 @Component({
     selector: 'app-cliente-list',
     templateUrl: './cliente-list.component.html',
     styleUrls: ['./cliente-list.component.scss'],
-    providers: [DialogService]
+    providers: [DialogService, ConfirmationService, MessageService]
 })
 
 export class ClienteListComponent {
@@ -27,17 +28,21 @@ export class ClienteListComponent {
     filtro: FiltroModel = new FiltroModel();
     status = StatusEnum.selectItem;
 
-    constructor(public dialogService: DialogService, public service: ClienteService) {
+    constructor(
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+        public dialogService: DialogService,
+        public service: ClienteService) {
     }
 
     ngOnInit() {
         this.cols = [
             {field: 'nome', header: 'Nome', text: true},
-            {field: 'tipo', header: 'Tipo Pessoa', text: true},
+            {field: 'tipo', header: 'Tipo Pessoa'},
             {field: 'cpfOrCnpj', header: 'CPF/CNPJ', text: true},
             {field: 'rgOrIe', header: 'RG/IE', text: true},
-            {field: 'status', header: 'Status', text: true},
-            {header: 'Ações'}
+            {field: 'status', header: 'Status'},
+            {field: 'acoes', header: 'Ações'}
         ];
         this.buscarClientes(this.filtro);
     }
@@ -79,5 +84,21 @@ export class ClienteListComponent {
                 });
         })
 
+    }
+
+    excluirCliente(id: number) {
+        this.confirmationService.confirm({
+            message: 'Tem certeza que deseja excluir o registro?',
+            header: 'Confirmação de Exclusão',
+            icon: 'pi pi-info-circle',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Cancelar',
+            accept: () => {
+                this.service.delete(id).subscribe(() => {
+                    this.buscarClientes(this.filtro);
+                })
+                this.messageService.add({ severity: 'info', summary: 'Confirmação', detail: 'Cliente inativado!' });
+            }
+        });
     }
 }
