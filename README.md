@@ -1,7 +1,7 @@
 # gestor-clientes
 Sistema Gerenciador de Clientes
 
-Tecnologias utilizadas: Angular, Spring, Docker, Postgres
+Tecnologias utilizadas: Angular(com template Sakai do PrimeNG), Spring, Docker, Postgres
 
 
 ## Configurando o Banco de Dados (Docker)
