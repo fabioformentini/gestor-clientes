@@ -28,6 +28,8 @@ export class ClienteFormComponent implements OnInit {
     cols!: Column[];
     tiposPessoaOptions = TipoPessoaEnum.selectItem;
     status = StatusEnum.selectItem;
+    isEdit: boolean;
+    isVisualizar: boolean
 
     constructor(
         private fb: FormBuilder,
@@ -47,13 +49,27 @@ export class ClienteFormComponent implements OnInit {
     }
 
     private verificarAcao(){
+        if (this.config.data.acao == 'visualizar'){
+            this.form.disable();
+            this.isVisualizar = true;
+        }
+        if (this.config.data.acao == 'editar'){
+            this.form.enable();
+            this.isEdit = true;
+        }
+        this.renderizarDadosCliente();
+    }
+
+    private renderizarDadosCliente() {
         const clienteEncontrado = this.config.data.cliente;
-        if (!clienteEncontrado){return}
+        if (!clienteEncontrado) {
+            return
+        }
         clienteEncontrado.dataCadastro = new Date(clienteEncontrado.dataCadastro)
-        if (clienteEncontrado.tipo == TipoPessoaEnum.PESSOA_FISICA){
+        if (clienteEncontrado.tipo == TipoPessoaEnum.PESSOA_FISICA) {
             this.setDadosFormPf(clienteEncontrado);
         }
-        if (clienteEncontrado.tipo == TipoPessoaEnum.PESSOA_JURIDICA){
+        if (clienteEncontrado.tipo == TipoPessoaEnum.PESSOA_JURIDICA) {
             this.setDadosFormPj(clienteEncontrado);
         }
     }
@@ -81,8 +97,7 @@ export class ClienteFormComponent implements OnInit {
             rgOrIe: [{value: null, disabled: true}],
             dataCadastro: [null],
             status: [null],
-            telefone: [null],
-            listaTelefones: [null],
+            telefone: [null]
         });
     }
 
@@ -93,7 +108,7 @@ export class ClienteFormComponent implements OnInit {
         if (this.form.get('tipo').value == TipoPessoaEnum.PESSOA_JURIDICA){
             this.converterModelPj();
         }
-        this.cliente.listaTelefones = this.listaTelefones;
+        this.cliente.telefones = this.listaTelefones;
         this.service.salvarCliente(this.cliente, this.form.get('tipo').value).subscribe(value => {
             this.fecharDialog();
             this.messageService.add({key: 'tr', severity: 'success', summary: 'Success', detail: 'O cliente ' + value.nome + ' foi cadastrado com sucesso!'})

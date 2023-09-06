@@ -6,5 +6,5 @@ export class ClienteModel{
     tipo: boolean;
     dataCadastro: Date;
     status: boolean;
-    listaTelefones: TelefoneModel[];
+    telefones: TelefoneModel[];
 }

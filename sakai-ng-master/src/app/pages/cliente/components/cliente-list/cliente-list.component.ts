@@ -69,14 +69,13 @@ export class ClienteListComponent {
         this.buscarClientes(this.filtro);
     }
 
-    editarCliente(row: ClienteListModel) {
+    handleAcao(row: ClienteListModel, acao: string) {
         this.service.buscarPorId(row.id, row.tipo).subscribe((value) => {
             this.ref = this.dialogService.open(ClienteFormComponent,
                 {
                     header: 'Novo Cliente',
                     width: '35%',
-                    data: {cliente: value}
-
+                    data: {cliente: value, acao: acao}
                 });
         })
 

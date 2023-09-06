@@ -61,7 +61,7 @@
                                 {{rowData['numero'] | maskTelefone}}
                             </ng-template>
                             <ng-template [ngIf]="!col.text">
-                                <p-button label="Excluir" styleClass="p-button-raised p-button-text p-button-danger flex" class="flex justify-content-center"></p-button>
+                                <p-button [disabled]="isVisualizar" label="Excluir" styleClass="p-button-raised p-button-text p-button-danger flex" class="flex justify-content-center"></p-button>
                             </ng-template>
                         </td>
                     </tr>
@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="col-12 flex justify-content-end">
-        <p-button label="Cancelar" styleClass="p-button-secondary mr-3" (onClick)="fecharDialog()"></p-button>
-        <p-button label="Salvar" styleClass="button-save-new" (onClick)="salvarCliente()"></p-button>
+        <p-button label="Cancelar" styleClass="p-button-secondary mr-3" [disabled]="isVisualizar" (onClick)="fecharDialog()"></p-button>
+        <p-button label="Salvar" styleClass="button-save-new" [disabled]="isVisualizar" (onClick)="salvarCliente()"></p-button>
     </div>
 </div>

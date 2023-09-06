@@ -34,8 +34,8 @@
                     {{ rowData[col.field] }}
 
                     <ng-template [ngIf]="!col.text">
-                        <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-secondary p-button-outlined"></p-button>
-                        <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-info p-button-outlined" (onClick)="editarCliente(rowData)"></p-button>
+                        <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-secondary p-button-outlined" (onClick)="handleAcao(rowData, 'visualizar')"></p-button>
+                        <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-info p-button-outlined" (onClick)="handleAcao(rowData, 'editar')"></p-button>
                         <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-outlined"></p-button>
                     </ng-template>
                 </td>
