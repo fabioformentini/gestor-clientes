@@ -47,7 +47,8 @@ public class Cliente implements Serializable {
     @Column(name = "ativo")
     private Boolean status;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_cliente")
     private List<Telefone> telefones = new ArrayList<>();
 
     @Id

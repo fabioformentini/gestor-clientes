@@ -5,6 +5,8 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Page} from "../util/page";
+import {TipoPessoaEnum} from "../enums/tipo-pessoa.enum";
+import {FiltroModel} from "../models/filtro.model";
 
 @Injectable({
     providedIn: 'root'
@@ -18,9 +20,20 @@ export class ClienteService extends AbstractService<ClienteModel, ClienteListMod
         return "cliente";
     }
 
-    search(): Observable<Page<ClienteListModel[]>>{
-        return this.http.post<Page<ClienteListModel[]>>(this.resourceUrl,
-            {params: 'page', 'size': 10})
+    buscarClientes(filtro: FiltroModel): Observable<any>{
+        return this.http.post<Page<ClienteListModel[]>>(this.resourceUrl + '/buscar', filtro)
+    }
+
+    salvarCliente(cliente: ClienteModel, tipoCliente: boolean): Observable<ClienteModel> {
+        let rotaTipo: string;
+        tipoCliente == TipoPessoaEnum.PESSOA_FISICA ? rotaTipo = '/pf' : rotaTipo = '/pj';
+        return this.http.post<ClienteModel>(this.resourceUrl + rotaTipo, cliente);
+    }
+
+    buscarPorId(id: number, tipoCliente: boolean): Observable<any> {
+        let rotaTipo: string;
+        tipoCliente == TipoPessoaEnum.PESSOA_FISICA ? rotaTipo = '/pf/' : rotaTipo = '/pj/';
+        return this.http.get(`${this.resourceUrl}${rotaTipo}${id}`)
     }
 
 }

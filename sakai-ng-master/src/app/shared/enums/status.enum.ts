@@ -1,8 +1,8 @@
 import {SelectItem} from "../models/select-item";
 
 export class StatusEnum {
-    static ATIVO = 0;
-    static INATIVO = 1;
+    static ATIVO = true;
+    static INATIVO = false;
 
     static selectItem: SelectItem[] = [
         {label: 'Ativo', value: StatusEnum.ATIVO},

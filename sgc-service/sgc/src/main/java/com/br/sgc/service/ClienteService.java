@@ -6,11 +6,10 @@ import com.br.sgc.domain.PessoaJuridica;
 import com.br.sgc.repository.ClienteRepository;
 import com.br.sgc.repository.PessoaFisicaRepository;
 import com.br.sgc.repository.PessoaJuridicaRepository;
-import com.br.sgc.service.dto.ClienteDTO;
 import com.br.sgc.service.dto.ClienteListDTO;
+import com.br.sgc.service.dto.FiltroDTO;
 import com.br.sgc.service.dto.PessoaFisicaDTO;
 import com.br.sgc.service.dto.PessoaJuridicaDTO;
-import com.br.sgc.service.mapper.ClienteMapper;
 import com.br.sgc.service.mapper.PessoaFisicaMapper;
 import com.br.sgc.service.mapper.PessoaJuridicaMapper;
 import jakarta.transaction.Transactional;
@@ -18,11 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor
@@ -31,17 +27,20 @@ public class ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final PessoaJuridicaMapper pessoaJuridicaMapper;
-
     private final PessoaFisicaMapper pessoaFisicaMapper;
     private final PessoaFisicaRepository pessoaFisicaRepository;
-
     private final PessoaJuridicaRepository pessoaJuridicaRepository;
 
-    public Page<ClienteListDTO> buscar(Pageable pageable){
-        return clienteRepository.buscarClientes(pageable);
+
+    public Page<ClienteListDTO> buscar(Pageable pageable, FiltroDTO filtroDTO){
+        return clienteRepository.buscarClientes(pageable, filtroDTO);
     }
 
-    public PessoaJuridicaDTO buscarJuridico(Integer id) {
+    private Cliente buscarCliente(Integer id) {
+        return clienteRepository.findById(id).orElseThrow( () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao achou"));
+    }
+
+    public PessoaJuridicaDTO buscarJuridica(Integer id) {
         return pessoaJuridicaMapper.toDto(buscarPJ(id));
     }
 
@@ -62,9 +61,13 @@ public class ClienteService {
     }
 
     public PessoaJuridicaDTO salvarPJ(PessoaJuridicaDTO pessoaJuridicaDTO) {
-        PessoaJuridica p = pessoaJuridicaRepository.save(pessoaJuridicaMapper.toEntity(pessoaJuridicaDTO));
-        return pessoaJuridicaMapper.toDto(p);
+        return pessoaJuridicaMapper.toDto(pessoaJuridicaRepository.save(pessoaJuridicaMapper.toEntity(pessoaJuridicaDTO)));
     }
 
+    public void deletarCliente(Integer id) {
+        Cliente cliente = buscarCliente(id);
+        cliente.setStatus(false);
+        clienteRepository.save(cliente);
+    }
 
 }

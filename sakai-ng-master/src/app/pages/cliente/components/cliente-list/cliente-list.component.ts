@@ -5,6 +5,8 @@ import {Column} from "../../../../shared/models/colum.model";
 import {ClienteListModel} from "../../../../shared/models/cliente-list.model";
 import {ClienteService} from "../../../../shared/services/cliente.service";
 import {ClienteModel} from "../../../../shared/models/cliente.model";
+import {StatusEnum} from "../../../../shared/enums/status.enum";
+import {FiltroModel} from "../../../../shared/models/filtro.model";
 
 @Component({
     selector: 'app-cliente-list',
@@ -21,6 +23,9 @@ export class ClienteListComponent {
     clientes: any;
 
     cliente: ClienteModel
+    filtroOn = false;
+    filtro: FiltroModel = new FiltroModel();
+    status = StatusEnum.selectItem;
 
     constructor(public dialogService: DialogService, public service: ClienteService) {
     }
@@ -34,24 +39,7 @@ export class ClienteListComponent {
             {field: 'status', header: 'Status', text: true},
             {header: 'Ações'}
         ];
-        // this.clientes = [
-        //     {
-        //         id: 1,
-        //         nome: 'João Silva',
-        //         tipo: true,
-        //         cpfOrCnpj: '123.456.789-00',
-        //         rgOrIe: '98765432',
-        //         status: true,
-        //     },
-        //     {
-        //         id: 2,
-        //         nome: 'Empresa ABC',
-        //         tipo: false,
-        //         cpfOrCnpj: '12.345.678/0001-90',
-        //         rgOrIe: '98765432-1',
-        //         status: true,
-        //     }]
-        this.buscarClientes();
+        this.buscarClientes(this.filtro);
     }
 
     novoCliente() {
@@ -59,11 +47,14 @@ export class ClienteListComponent {
             {
                 header: 'Novo Cliente',
                 width: '35%'
-            })
+            });
+        this.ref.onDestroy.subscribe(value => {
+            console.log(value)
+        })
     }
 
-    private buscarClientes() {
-        this.service.search().subscribe((value) => {
+    private buscarClientes(filtro: FiltroModel) {
+        this.service.buscarClientes(filtro).subscribe((value) => {
             this.clientes = value.content;
         })
     }
@@ -72,5 +63,22 @@ export class ClienteListComponent {
         this.service.findById(id).subscribe((response) => {
             this.cliente = response;
         })
+    }
+
+    filtrarClientes() {
+        this.buscarClientes(this.filtro);
+    }
+
+    editarCliente(row: ClienteListModel) {
+        this.service.buscarPorId(row.id, row.tipo).subscribe((value) => {
+            this.ref = this.dialogService.open(ClienteFormComponent,
+                {
+                    header: 'Novo Cliente',
+                    width: '35%',
+                    data: {cliente: value}
+
+                });
+        })
+
     }
 }

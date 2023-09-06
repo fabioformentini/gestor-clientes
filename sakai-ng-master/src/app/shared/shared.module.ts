@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PRIMENG_IMPORTS} from "./primeng-imports";
 import {MaskTelefonePipe} from "./pipes/mask-telefone.pipe";
 
@@ -11,11 +11,13 @@ import {MaskTelefonePipe} from "./pipes/mask-telefone.pipe";
     imports: [
         PRIMENG_IMPORTS,
         ReactiveFormsModule,
+        FormsModule
 
     ],
     exports: [
         PRIMENG_IMPORTS,
-        MaskTelefonePipe
+        MaskTelefonePipe,
+        FormsModule
     ]
 })
 export class SharedModule { }

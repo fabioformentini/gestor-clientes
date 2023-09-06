@@ -4,6 +4,19 @@
 
 <div class="col-12 flex justify-content-start">
     <p-button label="Novo Cliente" icon="pi pi-plus" iconPos="right" styleClass="button-save-new" (onClick)="novoCliente()"></p-button>
+    <p-button label="Filtrar" icon="pi pi-plus" iconPos="right" styleClass="button-save-new" (onClick)="filtroOn = true"></p-button>
+</div>
+
+<div class="col-12 flex card" *ngIf="filtroOn">
+    <div class="col-4">
+        <label for="nome" class="block">Nome</label>
+        <input [(ngModel)]="filtro.nome" id="nome" type="text" pInputText class= "w-full" />
+    </div>
+    <div class="col-4">
+        <label for="status" class="block">Status</label>
+        <p-dropdown id="status" [(ngModel)]="filtro.ativo" [options]="status" optionValue="value" placeholder="Selecione" optionLabel="label" class="" styleClass="w-full"></p-dropdown>
+    </div>
+    <p-button icon="pi pi-search" styleClass="p-button-success" (onClick)="filtrarClientes()"></p-button>
 </div>
 
 <div class="card">
@@ -22,7 +35,7 @@
 
                     <ng-template [ngIf]="!col.text">
                         <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-secondary p-button-outlined"></p-button>
-                        <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-info p-button-outlined"></p-button>
+                        <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-info p-button-outlined" (onClick)="editarCliente(rowData)"></p-button>
                         <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger p-button-outlined"></p-button>
                     </ng-template>
                 </td>
