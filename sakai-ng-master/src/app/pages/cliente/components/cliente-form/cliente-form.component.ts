@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {TelefoneModel} from "../../../../shared/models/telefone.model";
 import {TipoPessoaEnum} from "../../../../shared/enums/tipo-pessoa.enum";
@@ -18,8 +18,6 @@ import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dyna
     providers: [MessageService]
 })
 export class ClienteFormComponent implements OnInit {
-    @Output() aoSalvarCliente: EventEmitter<void> = new EventEmitter<void>()
-    ref: DynamicDialogRef | undefined;
     listaTelefones: TelefoneModel[] = [];
     telefone: TelefoneModel;
     tipoPessoa: typeof TipoPessoaEnum = TipoPessoaEnum;
@@ -36,7 +34,8 @@ export class ClienteFormComponent implements OnInit {
         private service: ClienteService,
         private messageService: MessageService,
         public dialogService: DialogService,
-        private config: DynamicDialogConfig) {
+        private config: DynamicDialogConfig,
+        public ref: DynamicDialogRef) {
         this.definirFormulario();
     }
 
@@ -91,9 +90,9 @@ export class ClienteFormComponent implements OnInit {
     private definirFormulario() {
         this.form = this.fb.group({
             id: [null],
-            nome: [null],
-            tipo: [null],
-            cpfOrCnpj: [{value: null, disabled: true}],
+            nome: [null, [Validators.required]],
+            tipo: [null, [Validators.required]],
+            cpfOrCnpj: [{value: null, disabled: true}, [Validators.required]],
             rgOrIe: [{value: null, disabled: true}],
             dataCadastro: [null],
             status: [null],
@@ -110,8 +109,10 @@ export class ClienteFormComponent implements OnInit {
         }
         this.cliente.telefones = this.listaTelefones;
         this.service.salvarCliente(this.cliente, this.form.get('tipo').value).subscribe(value => {
-            this.fecharDialog();
-            this.messageService.add({key: 'tr', severity: 'success', summary: 'Success', detail: 'O cliente ' + value.nome + ' foi cadastrado com sucesso!'})
+            this.fecharDialog(value);
+        }, (error) => {
+            this.form.get('cpfOrCnpj').setErrors({'invalid': true});
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
         })
     }
 
@@ -140,10 +141,12 @@ export class ClienteFormComponent implements OnInit {
         this.form.get('rgOrIe').enable();
     }
 
-    fecharDialog() {
-        this.dialogService.dialogComponentRefMap.forEach(dialog => {
-            dialog.destroy();
-        });
+    fecharDialog(clienteSalvo?: any) {
+        this.ref.close(clienteSalvo)
     }
 
+    excluirTelefone(rowData: any) {
+        const index = this.listaTelefones.findIndex(obj => obj.numero == rowData.numero);
+        this.listaTelefones.splice(index, 1);
+    }
 }

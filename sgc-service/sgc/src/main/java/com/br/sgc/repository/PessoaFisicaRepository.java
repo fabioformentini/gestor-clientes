@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, Integer> {
 
+    boolean existsByCpf(String cpf);
 }

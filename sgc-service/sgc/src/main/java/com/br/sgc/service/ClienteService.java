@@ -57,11 +57,26 @@ public class ClienteService {
     }
 
     public PessoaFisicaDTO salvarPF(PessoaFisicaDTO pessoaFisicaDTO) {
+        validarCpf(pessoaFisicaDTO.getCpf());
         return pessoaFisicaMapper.toDto(pessoaFisicaRepository.save(pessoaFisicaMapper.toEntity(pessoaFisicaDTO)));
+    }
+
+    private void validarCpf(String cpf) {
+        boolean cpfCadastrado = pessoaFisicaRepository.existsByCpf(cpf);
+        if (cpfCadastrado) {
+            throw new RuntimeException("O CPF já está cadastrado!");
+        }
     }
 
     public PessoaJuridicaDTO salvarPJ(PessoaJuridicaDTO pessoaJuridicaDTO) {
         return pessoaJuridicaMapper.toDto(pessoaJuridicaRepository.save(pessoaJuridicaMapper.toEntity(pessoaJuridicaDTO)));
+    }
+
+    private void validarCnpj(String cnpj) {
+        boolean cnpjCadastrado = pessoaJuridicaRepository.existsByCnpj(cnpj);
+        if (cnpjCadastrado) {
+            throw new RuntimeException("O CNPJ já está cadastrado!");
+        }
     }
 
     public void deletarCliente(Integer id) {

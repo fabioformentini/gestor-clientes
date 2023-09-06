@@ -16,7 +16,6 @@ import { StatusPipe } from './pipes/status.pipe';
         PRIMENG_IMPORTS,
         ReactiveFormsModule,
         FormsModule
-
     ],
     exports: [
         PRIMENG_IMPORTS,

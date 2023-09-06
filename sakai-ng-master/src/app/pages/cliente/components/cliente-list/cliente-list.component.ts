@@ -51,11 +51,15 @@ export class ClienteListComponent {
         this.ref = this.dialogService.open(ClienteFormComponent,
             {
                 header: 'Novo Cliente',
-                width: '35%'
+                width: '35%',
+                data: {acao: ''}
             });
-        this.ref.onDestroy.subscribe(value => {
-            console.log(value)
-        })
+        this.ref.onClose.subscribe((cliente) => {
+            if (cliente) {
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'O cliente ' + cliente.nome + 'foi cadastrado com sucesso!'})
+                this.buscarClientes(this.filtro)
+            }
+        });
     }
 
     private buscarClientes(filtro: FiltroModel) {
@@ -78,7 +82,7 @@ export class ClienteListComponent {
         this.service.buscarPorId(row.id, row.tipo).subscribe((value) => {
             this.ref = this.dialogService.open(ClienteFormComponent,
                 {
-                    header: 'Novo Cliente',
+                    header: 'Formulário Cliente',
                     width: '35%',
                     data: {cliente: value, acao: acao}
                 });
