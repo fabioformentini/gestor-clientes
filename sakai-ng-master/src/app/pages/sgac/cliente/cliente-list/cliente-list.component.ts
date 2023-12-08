@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {Column} from "../../../../shared/models/colum.model";
@@ -16,7 +16,7 @@ import {ConfirmationService, ConfirmEventType, MessageService} from "primeng/api
     providers: [DialogService, ConfirmationService, MessageService]
 })
 
-export class ClienteListComponent {
+export class ClienteListComponent implements OnInit{
 
     cols!: Column[];
     ref: DynamicDialogRef | undefined;

@@ -1,0 +1,17 @@
+<p-toast></p-toast>
+<div class="card" [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12">
+            <label for="nome" class="block">Nome da Concesisonária*</label>
+            <input id="nome" type="text" pInputText class= "w-full" formControlName="nome"/>
+        </div>
+        <div class="field col-12">
+            <label for="endereco" class="block">Endereço*</label>
+            <input id="endereco" type="text" pInputText class= "w-full" formControlName="endereco"/>
+        </div>
+    </div>
+    <div class="col-12 flex justify-content-end">
+        <p-button label="Cancelar" styleClass="p-button-secondary mr-3" [disabled]="isVisualizar" (onClick)="fecharDialog()"></p-button>
+        <p-button label="Salvar" styleClass="button-save-new" [disabled]="isVisualizar || !form.valid" (onClick)="salvarConcessionaria()"></p-button>
+    </div>
+</div>

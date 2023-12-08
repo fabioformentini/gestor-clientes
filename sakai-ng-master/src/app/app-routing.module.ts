@@ -9,7 +9,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 path: '',
                 component: AppLayoutComponent,
                 children: [
-                    {path: 'cliente', loadChildren: () => import('./pages/cliente/cliente.module').then(m => m.ClienteModule)}
+                    {path: 'cliente', loadChildren: () => import('./pages/sgac/sgac.module').then(m => m.SgacModule)}
                 ]
             },
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
