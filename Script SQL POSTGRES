@@ -24,3 +24,9 @@ create table pessoa_juridica (
 	cnpj varchar(14) not null unique,
 	ie varchar(255) unique
 );
+
+create table concessionaria (
+	id serial primary key,
+	nome varchar(255) not null,
+	endereco varchar(255) not null
+);
