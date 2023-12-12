@@ -8,6 +8,8 @@ import {PRIMENG_IMPORTS} from "../../shared/primeng-imports";
 import {SharedModule} from "../../shared/shared.module";
 import { ConcessionariaFormComponent } from './concessionaria/concessionaria-form/concessionaria-form.component';
 import { ConcessionariaListComponent } from './concessionaria/concessionaria-list/concessionaria-list.component';
+import { CarroFormComponent } from './carro/carro-form/carro-form.component';
+import { CarroListComponent } from './carro/carro-list/carro-list.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { ConcessionariaListComponent } from './concessionaria/concessionaria-lis
         ClienteFormComponent,
         ConcessionariaFormComponent,
         ConcessionariaListComponent,
+        CarroFormComponent,
+        CarroListComponent,
     ],
     imports: [
         CommonModule,

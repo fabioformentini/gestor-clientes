@@ -1,0 +1,33 @@
+<p-toast></p-toast>
+<div class="card" [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12">
+            <label for="placa" class="block">Placa*</label>
+            <input id="placa" type="text" pInputText class= "w-full" formControlName="placa"/>
+        </div>
+        <div class="field col-12">
+            <label for="modelo" class="block">Modelo*</label>
+            <input id="modelo" type="text" pInputText class= "w-full" formControlName="modelo"/>
+        </div>
+        <div class="field col-12">
+            <label for="ano" class="block">Ano*</label>
+            <input id="ano" type="text" pInputText class= "w-full" formControlName="ano"/>
+        </div>
+        <div class="field col-12">
+            <label for="tipo" class="block">Concessionária*</label>
+            <p-dropdown
+                id="tipo"
+                [options]="concessionariasOptions"
+                placeholder="Selecione"
+                optionValue="value"
+                optionLabel="label"
+                styleClass="w-full"
+                formControlName="idConcessionaria">
+            </p-dropdown>
+        </div>
+    </div>
+    <div class="col-12 flex justify-content-end">
+        <p-button label="Cancelar" styleClass="p-button-secondary mr-3" [disabled]="isVisualizar" (onClick)="fecharDialog()"></p-button>
+        <p-button label="Salvar" styleClass="button-save-new" [disabled]="isVisualizar || !form.valid" (onClick)="salvarCarro()"></p-button>
+    </div>
+</div>
