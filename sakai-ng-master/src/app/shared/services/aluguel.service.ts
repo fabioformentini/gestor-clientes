@@ -9,24 +9,21 @@ import {TipoPessoaEnum} from "../enums/tipo-pessoa.enum";
 import {FiltroModel} from "../models/filtro.model";
 import {ConcessionariaModel} from "../models/concessionaria.model";
 import {ConcessionariaListModel} from "../models/concessionaria-list.model";
-import {CarroModel} from "../models/carro.model";
-import {CarroListModel} from "../models/carro-list.model";
 import {SelectItem} from "primeng/api";
+import {AluguelListModel} from "../models/aluguel-list.model";
+import {AluguelModel} from "../models/aluguel.model";
 
 @Injectable({
     providedIn: 'root'
 })
-export class CarroService extends AbstractService<CarroModel, CarroListModel> {
+export class AluguelService extends AbstractService<AluguelModel, AluguelListModel> {
     constructor(private httpClient: HttpClient) {
         super(httpClient);
     }
 
     override getEntity(): string {
-        return "carro";
+        return "aluguel";
     }
 
-    findCarrosDropdown() {
-        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown');
-    }
 
 }

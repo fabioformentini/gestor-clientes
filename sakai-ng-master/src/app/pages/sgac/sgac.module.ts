@@ -10,6 +10,8 @@ import { ConcessionariaFormComponent } from './concessionaria/concessionaria-for
 import { ConcessionariaListComponent } from './concessionaria/concessionaria-list/concessionaria-list.component';
 import { CarroFormComponent } from './carro/carro-form/carro-form.component';
 import { CarroListComponent } from './carro/carro-list/carro-list.component';
+import { AluguelListComponent } from './aluguel/aluguel-list/aluguel-list.component';
+import { AluguelFormComponent } from './aluguel/aluguel-form/aluguel-form.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { CarroListComponent } from './carro/carro-list/carro-list.component';
         ConcessionariaListComponent,
         CarroFormComponent,
         CarroListComponent,
+        AluguelListComponent,
+        AluguelFormComponent,
     ],
     imports: [
         CommonModule,

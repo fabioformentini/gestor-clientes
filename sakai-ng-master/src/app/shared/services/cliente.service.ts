@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {Page} from "../util/page";
 import {TipoPessoaEnum} from "../enums/tipo-pessoa.enum";
 import {FiltroModel} from "../models/filtro.model";
+import {SelectItem} from "primeng/api";
 
 @Injectable({
     providedIn: 'root'
@@ -36,4 +37,7 @@ export class ClienteService extends AbstractService<ClienteModel, ClienteListMod
         return this.http.get(`${this.resourceUrl}${rotaTipo}${id}`)
     }
 
+    findClientesDropdown() {
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown');
+    }
 }

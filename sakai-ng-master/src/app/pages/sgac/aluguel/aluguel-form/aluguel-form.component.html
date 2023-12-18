@@ -1,0 +1,56 @@
+<p-toast></p-toast>
+<div class="card" [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12">
+            <label for="cliente" class="block">Cliente*</label>
+            <p-dropdown
+                id="cliente"
+                [options]="clienteOptions"
+                placeholder="Selecione"
+                optionValue="value"
+                optionLabel="label"
+                styleClass="w-full"
+                formControlName="idCliente">
+            </p-dropdown>
+        </div>
+        <div class="field col-12">
+            <label for="carro" class="block">Carro*</label>
+            <p-dropdown
+                id="carro"
+                [options]="carroOptions"
+                placeholder="Selecione"
+                optionValue="value"
+                optionLabel="label"
+                styleClass="w-full"
+                formControlName="idCarro">
+            </p-dropdown>
+        </div>
+        <div class="field col-12">
+            <label for="dataLocacao" class="block">Data de Locação</label>
+            <p-calendar
+                id="dataLocacao"
+                styleClass="w-full"
+                formControlName="dataLocacao"
+                appendTo="body"
+                dateFormat="dd/mm/yy"
+                [defaultDate]="currentDate">
+            </p-calendar>
+        </div>
+        <div class="field col-12">
+            <label for="dataDevolucao" class="block">Data de devolução</label>
+            <p-calendar
+                id="dataDevolucao"
+                styleClass="w-full"
+                formControlName="dataDevolucao"
+                appendTo="body"
+                dateFormat="dd/mm/yy">
+            </p-calendar>
+        </div>
+    </div>
+    <div class="col-12 flex justify-content-end">
+        <p-button label="Cancelar" styleClass="p-button-secondary mr-3" [disabled]="isVisualizar"
+                  (onClick)="fecharDialog()"></p-button>
+        <p-button label="Salvar" styleClass="button-save-new" [disabled]="isVisualizar || !form.valid"
+                  (onClick)="salvarAluguel()"></p-button>
+    </div>
+</div>

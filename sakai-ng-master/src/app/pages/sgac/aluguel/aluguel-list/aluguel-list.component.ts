@@ -2,90 +2,91 @@ import {Component, OnInit} from '@angular/core';
 import {Column} from "../../../../shared/models/colum.model";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {ConcessionariaService} from "../../../../shared/services/concessionaria.service";
-import {ConcessionariaListModel} from "../../../../shared/models/concessionaria-list.model";
-import {ClienteListModel} from "../../../../shared/models/cliente-list.model";
-import {ConcessionariaFormComponent} from "../concessionaria-form/concessionaria-form.component";
+import {AluguelFormComponent} from "../aluguel-form/aluguel-form.component";
+import {AluguelListModel} from "../../../../shared/models/aluguel-list.model";
+import {AluguelService} from "../../../../shared/services/aluguel.service";
 
 @Component({
-    selector: 'app-concessionaria-list',
-    templateUrl: './concessionaria-list.component.html',
-    styleUrls: ['./concessionaria-list.component.scss'],
+    selector: 'app-aluguel-list',
+    templateUrl: './aluguel-list.component.html',
+    styleUrls: ['./aluguel-list.component.scss'],
     providers: [DialogService, ConfirmationService, MessageService]
-})
 
-export class ConcessionariaListComponent implements OnInit{
+})
+export class AluguelListComponent implements OnInit {
     cols!: Column[];
     ref: DynamicDialogRef | undefined;
-    concessionarias: ConcessionariaListModel[];
+    alugueis: AluguelListModel[];
 
     constructor(
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         public dialogService: DialogService,
-        public service: ConcessionariaService) {
+        public service: AluguelService) {
     }
 
     ngOnInit() {
         this.construirColunasListagem();
-        this.buscarConcessionarias();
+        this.buscarAlugueis();
     }
 
     private construirColunasListagem() {
         this.cols = [
-            {field: 'nome', header: 'Nome', text: true},
-            {field: 'endereco', header: 'Endereço', text: true},
+            {field: 'nomeCliente', header: 'Cliente', text: true},
+            {field: 'placaCarro', header: 'Carro', text: true},
+            {field: 'dataLocacao', header: 'Data de locação', text: true},
+            {field: 'dataDevolucao', header: 'Data de devolução', text: true},
             {field: 'acoes', header: 'Ações'}
         ];
     }
 
-    private buscarConcessionarias() {
+    private buscarAlugueis() {
         this.service.findAll().subscribe((value) => {
-            this.concessionarias = value;
+            this.alugueis = value;
         })
     }
 
-    novaConcessionaria() {
-        this.ref = this.dialogService.open(ConcessionariaFormComponent,
+    novoAluguel() {
+        this.ref = this.dialogService.open(AluguelFormComponent,
             {
-                header: 'Novo Cliente',
+                header: 'Novo Aluguel',
                 width: '35%',
                 data: {acao: ''}
             });
-        this.ref.onClose.subscribe((concessionaria) => {
-            if (concessionaria) {
+        this.ref.onClose.subscribe((aluguel) => {
+            if (aluguel) {
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Success',
-                    detail: 'A concessionária ' + concessionaria.nome + ' foi cadastrada com sucesso!'
+                    detail: 'O aluguel foi cadastrado com sucesso!'
                 })
-                this.buscarConcessionarias()
+                this.buscarAlugueis()
             }
         });
     }
 
-    handleAcao(row: ClienteListModel, acao: string) {
+    handleAcao(row: AluguelListModel, acao: string) {
         this.service.findById(row.id).subscribe((value) => {
-            this.ref = this.dialogService.open(ConcessionariaFormComponent,
+            this.ref = this.dialogService.open(AluguelFormComponent,
                 {
-                    header: 'Formulário Concessionária',
+                    header: 'Formulário Aluguel',
                     width: '35%',
-                    data: {concessionaria: value, acao: acao}
+                    data: {aluguel: value, acao: acao}
                 });
-            this.ref.onClose.subscribe((concessionaria) => {
-                if (concessionaria) {
+            this.ref.onClose.subscribe((aluguel) => {
+                if (aluguel) {
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
-                        detail: 'A concessionaria ' + concessionaria.nome + ' foi editado com sucesso!'
+                        detail: 'O aluguel foi editado com sucesso!'
                     })
-                    this.buscarConcessionarias()
+                    this.buscarAlugueis()
                 }
             });
         })
     }
 
-    excluirConcessionaria(id: number) {
+    excluirAluguel(id: number) {
         this.confirmationService.confirm({
             message: 'Tem certeza que deseja excluir o registro?',
             header: 'Confirmação de Exclusão',
@@ -94,12 +95,12 @@ export class ConcessionariaListComponent implements OnInit{
             rejectLabel: 'Cancelar',
             accept: () => {
                 this.service.delete(id).subscribe(() => {
-                    this.buscarConcessionarias();
+                    this.buscarAlugueis();
                 })
                 this.messageService.add({
                     severity: 'info',
                     summary: 'Confirmação',
-                    detail: 'Concessionária inativada!'
+                    detail: 'Aluguel inativado!'
                 });
             }
         });
