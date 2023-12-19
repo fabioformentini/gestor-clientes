@@ -16,6 +16,6 @@ public interface CarroRepository extends JpaRepository<Carro, Integer> {
     List<CarroListDTO> buscarTodos();
 
     @Query("select new com.br.sgc.service.dto.DropdownDTO(c.id, concat(c.modelo,'-',c.placa)) From Carro c " +
-            "left Join Aluguel a on a.carro.id = c.id where a.dataDevolucao is not null or a.dataLocacao is null")
-    List<DropdownDTO> buscarDropdown();
+            "left Join Aluguel a on a.carro.id = c.id where a.dataDevolucao < CURRENT_DATE or a.dataLocacao is null or a.id = :id")
+    List<DropdownDTO> buscarDropdown(Integer idCarro);
 }

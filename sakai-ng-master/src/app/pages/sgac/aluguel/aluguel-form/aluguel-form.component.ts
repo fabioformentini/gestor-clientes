@@ -64,10 +64,12 @@ export class AluguelFormComponent implements OnInit {
     }
 
     private renderizarDadosAluguel() {
-        const aluguelEncontrado = this.dialogConfig.data.concessionaria;
+        const aluguelEncontrado = this.dialogConfig.data.aluguel;
         if (!aluguelEncontrado) {
             return;
         }
+        aluguelEncontrado.dataLocacao = new Date(aluguelEncontrado.dataLocacao);
+        aluguelEncontrado.dataDevolucao = new Date(aluguelEncontrado.dataDevolucao);
         this.form.patchValue(aluguelEncontrado);
     }
 
@@ -83,7 +85,7 @@ export class AluguelFormComponent implements OnInit {
     }
 
     private buscarCarros() {
-        this.carroService.findCarrosDropdown().subscribe(value => {
+        this.carroService.findCarrosDropdown(this.form.get("id").value).subscribe(value => {
             this.carroOptions = value;
         })
     }

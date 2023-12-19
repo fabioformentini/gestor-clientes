@@ -46,8 +46,8 @@ public class CarroService {
         repository.deleteById(id);
     }
 
-    public List<DropdownDTO> buscarDropdown(){
-        return repository.buscarDropdown();
+    public List<DropdownDTO> buscarDropdown(Integer id){
+        return repository.buscarDropdown(id);
     }
 
 }

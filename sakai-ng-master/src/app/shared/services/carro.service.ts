@@ -25,8 +25,8 @@ export class CarroService extends AbstractService<CarroModel, CarroListModel> {
         return "carro";
     }
 
-    findCarrosDropdown() {
-        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown');
+    findCarrosDropdown(id: number) {
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown/' + id);
     }
 
 }

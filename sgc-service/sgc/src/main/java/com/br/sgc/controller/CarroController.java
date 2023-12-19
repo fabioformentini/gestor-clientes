@@ -37,9 +37,9 @@ public class CarroController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @GetMapping("/dropdown")
-    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(){
-        List<DropdownDTO> dto = service.buscarDropdown();
+    @GetMapping("/dropdown/{id}")
+    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(Integer id){
+        List<DropdownDTO> dto = service.buscarDropdown(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

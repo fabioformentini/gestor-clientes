@@ -14,7 +14,7 @@ public interface AluguelRepository extends JpaRepository<Aluguel, Integer> {
     @Query("select new com.br.sgc.service.dto.AluguelListDTO(" +
             "a.id, " +
             "a.cliente.nome, " +
-            "a.carro.placa, " +
+            "concat(a.carro.modelo,' - ',a.carro.placa), " +
             "a.dataLocacao, " +
             "a.dataDevolucao) From Aluguel a")
     List<AluguelListDTO> buscarTodos();
