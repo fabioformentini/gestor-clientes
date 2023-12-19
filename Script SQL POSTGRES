@@ -39,3 +39,11 @@ create table carro(
 	id_concessionaria int references concessionaria(id),
 	ativo boolean default true
 );
+
+create table aluguel (
+	id serial primary key,
+	data_locacao date not null,
+	data_devolucao date,
+	id_cliente int references cliente(id),
+	id_carro int references carro(id)
+);
