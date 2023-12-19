@@ -48,7 +48,7 @@ export class ConcessionariaListComponent implements OnInit{
     novaConcessionaria() {
         this.ref = this.dialogService.open(ConcessionariaFormComponent,
             {
-                header: 'Novo Cliente',
+                header: 'Nova Concessionária',
                 width: '35%',
                 data: {acao: ''}
             });
