@@ -7,6 +7,7 @@ import com.br.sgc.repository.ClienteRepository;
 import com.br.sgc.repository.PessoaFisicaRepository;
 import com.br.sgc.repository.PessoaJuridicaRepository;
 import com.br.sgc.service.dto.ClienteListDTO;
+import com.br.sgc.service.dto.DropdownDTO;
 import com.br.sgc.service.dto.FiltroDTO;
 import com.br.sgc.service.dto.PessoaFisicaDTO;
 import com.br.sgc.service.dto.PessoaJuridicaDTO;
@@ -20,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Objects;
 
 @Transactional
@@ -90,6 +92,10 @@ public class ClienteService {
         Cliente cliente = buscarCliente(id);
         cliente.setStatus(false);
         clienteRepository.save(cliente);
+    }
+
+    public List<DropdownDTO> buscarDropdown() {
+        return clienteRepository.buscarDropdown();
     }
 
 }

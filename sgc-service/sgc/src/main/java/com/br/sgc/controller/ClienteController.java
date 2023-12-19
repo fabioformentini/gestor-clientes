@@ -3,13 +3,13 @@ package com.br.sgc.controller;
 import com.br.sgc.service.ClienteService;
 import com.br.sgc.service.dto.ClienteDTO;
 import com.br.sgc.service.dto.ClienteListDTO;
+import com.br.sgc.service.dto.DropdownDTO;
 import com.br.sgc.service.dto.FiltroDTO;
 import com.br.sgc.service.dto.PessoaFisicaDTO;
 import com.br.sgc.service.dto.PessoaJuridicaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -58,5 +60,11 @@ public class ClienteController {
     public ResponseEntity<Void> deletarCliente(@PathVariable("id") Integer id){
         service.deletarCliente(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/dropdown")
+    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(){
+        List<DropdownDTO> dto = service.buscarDropdown();
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }
